@@ -1,5 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
+import { skillIcons, skills } from "../src/data"
 import "./index.css"
 
 const Avatar = () => (
@@ -20,19 +21,22 @@ const Intro = () => (
 const SkillList = () => {
   return (
     <div className="skill-list">
-      <Skill skill="React" emoji="💪" color="blue" />
-      <Skill skill="HTML+CSS" emoji="💪" color="orange" />
-      <Skill skill="JavaScript" emoji="💪" color="yellow" />
-      <Skill skill="Svelte" emoji="👶" color="orangered" />
+      {skills.map((skill) => (
+        <Skill
+          key={skill.skill}
+          skill={skill.skill}
+          emoji={skillIcons[skill.level]}
+          color={skill.color}
+        />
+      ))}
     </div>
   )
 }
 
-const Skill = (props) => (
-  <div className="skill" style={{ backgroundColor: props.color }}>
-    <span>
-      {props.skill} {props.emoji}
-    </span>
+const Skill = ({ skill, color, emoji }) => (
+  <div className="skill" style={{ backgroundColor: color }}>
+    <span>{skill}</span>
+    <span>{emoji}</span>
   </div>
 )
 
